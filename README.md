@@ -1,5 +1,5 @@
-# psel-mobile
-Repositório com o processo seletivo para a área de mobile da Raccoon
+# To-do List
+Aplicativo em Flutter (versão: 2.2.3) onde você pode organizar sua lista de afazeres.
 
 ## Requisitos mínimos
 - Visulizar tarefas salvas.
@@ -7,4 +7,4 @@ Repositório com o processo seletivo para a área de mobile da Raccoon
 - Salvar nova tarefa.
 - Deletar tarefa salva.
 
-obs: Utilizei [esse tutorial](https://www.youtube.com/watch?v=mOiXndQAZpw&t=647s&ab_channel=TVACStudio) para me auxiliar no desenvolvimento do projeto
+obs: Utilizei [esse tutorial](https://www.youtube.com/watch?v=mOiXndQAZpw&list=RDCMUCl6DxakCjDR5AfRwWhWNbMg&start_radio=1&ab_channel=TVACStudio) para me auxiliar no desenvolvimento do projeto
