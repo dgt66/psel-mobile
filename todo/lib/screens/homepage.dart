@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo/screens/taskpage.dart';
+import 'package:todo/widgets.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -11,15 +13,67 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.0,
-            vertical: 32.0,
-          ),
-          child: Column(
-            children: [
-              Image(image: AssetImage('assets/images/logo.png'))
-            ],
-          ),
+          width: double.infinity,
+            padding: EdgeInsets.symmetric(
+              horizontal: 24.0,
+            ),
+            color: Color(0xFFF6F6F6),
+            child: Stack(
+              children: [
+                Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        top: 10.0,
+                        bottom: 20.0,
+                      ),
+                      child: Image(image: AssetImage('assets/images/logo.png'))),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        TaskCardWidget(
+                          title: 'Começando',
+                          desc:
+                              'Bem vindo ao app Todo, esta é uma tarefa padrão, que você pode editar ou deletar.',
+                        ),
+                        TaskCardWidget(
+                          title: 'Começando',
+                          desc:
+                              'Bem vindo ao app Todo, esta é uma tarefa padrão, que você pode editar ou deletar.',
+                        ),
+                        TaskCardWidget(),
+                        TaskCardWidget(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+                Positioned(
+              bottom: 10.0,
+              right: 0.0,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Taskpage()),
+                  );
+                },
+                child: Container(
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                      color: Color(0xFFFFD700),
+                      borderRadius: BorderRadiusDirectional.circular(100)),
+                  child: Image(
+                      image: AssetImage(
+                    'assets/images/add_icon.png',
+                  )),
+                ),
+              ),
+            ),
+              ],
+            ),
         ),
       )
     );
