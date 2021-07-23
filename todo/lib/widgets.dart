@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 class TaskCardWidget extends StatelessWidget {
   final String title;
-  final String desc;
 
-  TaskCardWidget({this.title = 'Tarefa sem título', this.desc = 'Nenhuma descrição adicionada'});
+  TaskCardWidget({this.title = 'Tarefa sem título'});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      //width: double.infinity,
       padding: EdgeInsets.symmetric(
         vertical: 32.0,
         horizontal: 24.0,
@@ -31,59 +30,37 @@ class TaskCardWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
-            desc,
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Color(0xFFF868290),
-            ),
-          ),
         ],
       ),
     );
   }
 }
 
-class TodoWidget extends StatelessWidget {
-  final String text;
-  final bool checked;
+class CheckBoxModel {
+  CheckBoxModel({this.checked = false});
 
-  TodoWidget({this.text = 'Todo sem título', this.checked = false});
+  bool checked;
+}
+
+class CheckboxWidget extends StatefulWidget {
+  const CheckboxWidget({Key key, this.item}) : super(key: key);
+
+  final CheckBoxModel item;
 
   @override
+  _CheckboxWidgetState createState() => _CheckboxWidgetState();
+}
+
+class _CheckboxWidgetState extends State<CheckboxWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 24.0,
-        vertical: 6.0,
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 22.0,
-            height: 22.0,
-            margin: EdgeInsets.only(
-              right: 12.0,
-            ),
-            decoration: BoxDecoration(
-              color: checked ? Color(0xFFFFD700) : Colors.transparent,
-              borderRadius: BorderRadius.circular(6.0),
-              border: checked ? null : Border.all(
-                color: Color(0xFF86829D),
-                width: 1.5,
-                ),
-            ),
-            child: Image(image: AssetImage('assets/images/check_icon.png')),
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: checked ? Colors.black87 : Color(0xFF86829D),
-            ),
-          ),
-        ],
-      ),
+    return CheckboxListTile(
+      value: widget.item.checked,
+      onChanged: (bool value) {
+        setState(() {
+          widget.item.checked = value;
+        });
+      },
     );
   }
 }

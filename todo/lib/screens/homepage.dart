@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/screens/taskpage.dart';
 import 'package:todo/widgets.dart';
+import '../database_helper.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -8,56 +9,82 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  DatabaseHelper _dbHelper = DatabaseHelper();
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-            padding: EdgeInsets.symmetric(
-              horizontal: 24.0,
-            ),
-            color: Color(0xFFF6F6F6),
-            child: Stack(
+        body: SafeArea(
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.0,
+        ),
+        color: Color(0xFFF6F6F6),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        top: 10.0,
-                        bottom: 20.0,
-                      ),
-                      child: Image(image: AssetImage('assets/images/logo.png'))),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        TaskCardWidget(
-                          title: 'Começando',
-                          desc:
-                              'Bem vindo ao app Todo, esta é uma tarefa padrão, que você pode editar ou deletar.',
-                        ),
-                        TaskCardWidget(
-                          title: 'Começando',
-                          desc:
-                              'Bem vindo ao app Todo, esta é uma tarefa padrão, que você pode editar ou deletar.',
-                        ),
-                        TaskCardWidget(),
-                        TaskCardWidget(),
-                      ],
+                Container(
+                    margin: EdgeInsets.only(
+                      top: 10.0,
+                      bottom: 20.0,
                     ),
-                  ),
-                ],
-              ),
-                Positioned(
+                    child: Image(image: AssetImage('assets/images/logo.png'))),
+                Expanded(
+                    child: FutureBuilder(
+                  initialData: [],
+                  future: _dbHelper.getTasks(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Taskpage(
+                                          task: snapshot.data[index],
+                                        )),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  value: isChecked,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isChecked = value;
+                                    });
+                                  },
+                                ),
+                                TaskCardWidget(
+                                  title: snapshot.data[index].title,
+                                ),
+                              ],
+                            ),
+                          );
+                        });
+                  },
+                )),
+              ],
+            ),
+            Positioned(
               bottom: 10.0,
               right: 0.0,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Taskpage()),
-                  );
+                    MaterialPageRoute(
+                        builder: (context) => Taskpage(task: null)),
+                  ).then((value) {
+                    setState(() {});
+                  });
                 },
                 child: Container(
                   width: 60.0,
@@ -72,10 +99,9 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-              ],
-            ),
+          ],
         ),
-      )
-    );
+      ),
+    ));
   }
 }
