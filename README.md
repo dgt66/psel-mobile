@@ -1,5 +1,6 @@
 # To-do List
 Aplicativo em Flutter (versão: 2.2.3) onde você pode organizar sua lista de afazeres.
+Testado apenas com android 10.
 
 ## Requisitos mínimos
 - Visulizar tarefas salvas.
