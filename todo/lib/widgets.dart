@@ -8,7 +8,6 @@ class TaskCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: double.infinity,
       padding: EdgeInsets.symmetric(
         vertical: 32.0,
         horizontal: 24.0,
@@ -32,35 +31,6 @@ class TaskCardWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CheckBoxModel {
-  CheckBoxModel({this.checked = false});
-
-  bool checked;
-}
-
-class CheckboxWidget extends StatefulWidget {
-  const CheckboxWidget({Key key, this.item}) : super(key: key);
-
-  final CheckBoxModel item;
-
-  @override
-  _CheckboxWidgetState createState() => _CheckboxWidgetState();
-}
-
-class _CheckboxWidgetState extends State<CheckboxWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return CheckboxListTile(
-      value: widget.item.checked,
-      onChanged: (bool value) {
-        setState(() {
-          widget.item.checked = value;
-        });
-      },
     );
   }
 }

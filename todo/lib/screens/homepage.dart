@@ -10,6 +10,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   DatabaseHelper _dbHelper = DatabaseHelper();
+  bool check = false;
   bool isChecked = false;
 
   @override
@@ -54,8 +55,8 @@ class _HomepageState extends State<Homepage> {
                             child: Row(
                               children: [
                                 Checkbox(
-                                  checkColor: Colors.white,
                                   value: isChecked,
+                                  checkColor: Colors.white,
                                   onChanged: (value) {
                                     setState(() {
                                       isChecked = value;
