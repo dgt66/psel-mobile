@@ -17,7 +17,6 @@ class _HomeState extends State<Home> {
 
   List _listaTarefas = [];
 
-
   @override
   void initState() {
     super.initState();
@@ -40,6 +39,8 @@ class _HomeState extends State<Home> {
       _saveData();
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
                 ),
                 FloatingActionButton(
                   onPressed: _addTarefa,
-                  child: Icon(Icons.add),
+                  child: Icon(Icons.add, color: Colors.black),
                   backgroundColor: Colors.yellow,
                 ),
               ],
@@ -77,14 +78,18 @@ class _HomeState extends State<Home> {
                   return CheckboxListTile(
                     title: Text(_listaTarefas[index]["title"]),
                     value: _listaTarefas[index]["ok"],
+                    checkColor: Colors.black,
+                    activeColor: Colors.yellow,
                     secondary: FloatingActionButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        setState(() {
+                                _listaTarefas.removeAt(index);
+                                _saveData();
+                              });
+                      },
                       child: Icon(Icons.delete),
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: Colors.redAccent,
                     ),
-                    // secondary: CircleAvatar(
-                    //   child: Icon(_listaTarefas[index]["ok"] ?
-                    //   Icons.check : Icons.error),),
                       onChanged: (check) {
                         setState(() {
                           _listaTarefas[index]["ok"] = check;
