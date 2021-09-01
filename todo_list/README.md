@@ -1,16 +1,12 @@
-# todo_list
+# To-do List
+Aplicativo em Flutter (versão: 2.2.3) onde você pode organizar sua lista de afazeres.
+Testado com android 10, 8 e 7.
+Plugin usado path_provider 2.0.2.
 
-A new Flutter project.
+## Requisitos mínimos
+- Visulizar tarefas salvas.
+- Completar uma tarefa.
+- Salvar nova tarefa.
+- Deletar tarefa salva.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+obs: Utilizei [esse tutorial](https://www.udemy.com/course/curso-completo-flutter-app-android-ios/) para me auxiliar no desenvolvimento do projeto
